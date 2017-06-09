@@ -11,7 +11,7 @@
 </div>
 <div >
 	{% if current_user.can(Permission.WRITE_ARTICLES) %}
-	{{ wtf.quick_form(form) }}
+	<a href="{{ url_for('.new_post')}}"><button type="button" class="btn btn-primary btn-lg btn-block">写文章</button></a>
 	{% endif %}
 </div>
 
@@ -31,7 +31,7 @@
 <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
           <div class="sidebar-module sidebar-module-inset">
             <h4>关于作者</h4>
-            <p><strong>专业写bug</strong></p>
+            <p><strong>在写bug的路上越走越远</strong></p>
             <p>一个初学者关于个人博客搭建的一些尝试.</p>
             <p>通过简单的博客系统的搭建，学习各种知识。</p>
           </div>
@@ -54,9 +54,9 @@
           <div class="sidebar-module">
             <h4>其他信息</h4>
             <ol class="list-unstyled">
-              <li><a href="#">GitHub</a></li>
+              <li><a href="https://github.com/Mddlearn/flaskyblog">GitHub</a></li>
               <li><a href="#">Twitter</a></li>
-              <li><a href="#">Facebook</a></li>
+              
             </ol>
           </div>
         </div><!-- /.blog-sidebar -->

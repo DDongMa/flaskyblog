@@ -50,6 +50,23 @@ def index():
                            show_followed=show_followed, pagination=pagination)
 
 
+@main.route('/new-post', methods=['GET', 'POST'])
+def new_post():
+    form = PostForm()
+    g.tags = Tag.query.all()
+    if current_user.can(Permission.WRITE_ARTICLES) and form.validate_on_submit():
+        post = Post(body=form.body.data, title=form.title.data,
+                    author=current_user._get_current_object())
+
+        # add tags to post
+        for t in change_tags(form.tags.data):
+            if t:
+                post.tags.append(t)
+        db.session.add(post)
+        return redirect(url_for('.index'))
+    return render_template('new_post.html', form=form)
+
+
 @main.route('/user/<username>')
 def user(username):
     user = User.query.filter_by(username=username).first_or_404()
