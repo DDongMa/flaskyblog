@@ -8,6 +8,15 @@
 	<h1 class="text-center">编辑你的文章</h1>
 	<form method="POST" action="{{ url_for('.edit', id=post.id)}}">
 	{{ form.hidden_tag() }}	
+	<div>
+		{{ form.tags.label }}
+		{% if form.tags.errors %}
+		{% for e in form.tags.errors %}
+		<p class="help-block">{{e}}</p>
+		{% endfor %}
+		{% endif %}
+		{{ form.tags(class='form-control', value=post.tags) }}
+	</div>
 	<div class="form-group">
 		{{ form.title.label }}
 		{% if form.title.errors %}
