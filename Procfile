@@ -1,1 +1,1 @@
-web:  gunicorn gettingstrated.wsgi  --log-file -
+web:  gunicorn manage:app
